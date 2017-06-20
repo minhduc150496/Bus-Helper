@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusHelperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Beacon">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="major" Type="Int32" Nullable="false" />
+    <Property Name="minor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beacon_BusStop" Relationship="Self.FK_Beacon_BusStop_Beacon" FromRole="Beacon" ToRole="Beacon_BusStop" />
+  </EntityType>
+  <EntityType Name="Beacon_BusStop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_stop_id" Type="Int32" />
+    <Property Name="beacon_id" Type="Int32" />
+    <NavigationProperty Name="Beacon" Relationship="Self.FK_Beacon_BusStop_Beacon" FromRole="Beacon_BusStop" ToRole="Beacon" />
+    <NavigationProperty Name="BusStop" Relationship="Self.FK_Beacon_BusStop_BusStop" FromRole="Beacon_BusStop" ToRole="BusStop" />
+  </EntityType>
+  <EntityType Name="BusInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="Int32" />
+    <Property Name="start_time" Type="Time" Precision="7" />
+    <Property Name="end_time" Type="Time" Precision="7" />
+    <NavigationProperty Name="BusInfo_BusStop" Relationship="Self.FK_BusInfo_BusStop_BusInfo" FromRole="BusInfo" ToRole="BusInfo_BusStop" />
+    <NavigationProperty Name="BusInfo_Vehicle" Relationship="Self.FK_BusInfo_Vehicle_BusInfo" FromRole="BusInfo" ToRole="BusInfo_Vehicle" />
+  </EntityType>
+  <EntityType Name="BusInfo_BusStop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_stop_id" Type="Int32" />
+    <Property Name="bus_info_id" Type="Int32" />
+    <NavigationProperty Name="BusInfo" Relationship="Self.FK_BusInfo_BusStop_BusInfo" FromRole="BusInfo_BusStop" ToRole="BusInfo" />
+    <NavigationProperty Name="BusStop" Relationship="Self.FK_BusInfo_BusStop_BusStop" FromRole="BusInfo_BusStop" ToRole="BusStop" />
+  </EntityType>
+  <EntityType Name="BusInfo_Vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_info_id" Type="Int32" />
+    <Property Name="vehicle_id" Type="Int32" />
+    <NavigationProperty Name="BusInfo" Relationship="Self.FK_BusInfo_Vehicle_BusInfo" FromRole="BusInfo_Vehicle" ToRole="BusInfo" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK_BusInfo_Vehicle_Vehicle" FromRole="BusInfo_Vehicle" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="BusStop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="latitude" Type="Double" />
+    <Property Name="longitude" Type="Double" />
+    <NavigationProperty Name="Beacon_BusStop" Relationship="Self.FK_Beacon_BusStop_BusStop" FromRole="BusStop" ToRole="Beacon_BusStop" />
+    <NavigationProperty Name="BusInfo_BusStop" Relationship="Self.FK_BusInfo_BusStop_BusStop" FromRole="BusStop" ToRole="BusInfo_BusStop" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_History_BusStop" FromRole="BusStop" ToRole="History" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="bus_stop_id" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BusStop" Relationship="Self.FK_History_BusStop" FromRole="History" ToRole="BusStop" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_History_UserInfo" FromRole="History" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_History_UserInfo" FromRole="UserInfo" ToRole="History" />
+    <NavigationProperty Name="UserTokens" Relationship="Self.FK_UserToken_UserInfo" FromRole="UserInfo" ToRole="UserToken" />
+  </EntityType>
+  <EntityType Name="UserToken">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserToken_UserInfo" FromRole="UserToken" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="driver_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BusInfo_Vehicle" Relationship="Self.FK_BusInfo_Vehicle_Vehicle" FromRole="Vehicle" ToRole="BusInfo_Vehicle" />
+  </EntityType>
+  <Association Name="FK_Beacon_BusStop_Beacon">
+    <End Role="Beacon" Type="Self.Beacon" Multiplicity="0..1" />
+    <End Role="Beacon_BusStop" Type="Self.Beacon_BusStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Beacon">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Beacon_BusStop">
+        <PropertyRef Name="beacon_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Beacon_BusStop_BusStop">
+    <End Role="BusStop" Type="Self.BusStop" Multiplicity="0..1" />
+    <End Role="Beacon_BusStop" Type="Self.Beacon_BusStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusStop">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Beacon_BusStop">
+        <PropertyRef Name="bus_stop_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusInfo_BusStop_BusInfo">
+    <End Role="BusInfo" Type="Self.BusInfo" Multiplicity="0..1" />
+    <End Role="BusInfo_BusStop" Type="Self.BusInfo_BusStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusInfo_BusStop">
+        <PropertyRef Name="bus_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusInfo_Vehicle_BusInfo">
+    <End Role="BusInfo" Type="Self.BusInfo" Multiplicity="0..1" />
+    <End Role="BusInfo_Vehicle" Type="Self.BusInfo_Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusInfo_Vehicle">
+        <PropertyRef Name="bus_info_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusInfo_BusStop_BusStop">
+    <End Role="BusStop" Type="Self.BusStop" Multiplicity="0..1" />
+    <End Role="BusInfo_BusStop" Type="Self.BusInfo_BusStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusStop">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusInfo_BusStop">
+        <PropertyRef Name="bus_stop_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusInfo_Vehicle_Vehicle">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="BusInfo_Vehicle" Type="Self.BusInfo_Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BusInfo_Vehicle">
+        <PropertyRef Name="vehicle_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_BusStop">
+    <End Role="BusStop" Type="Self.BusStop" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusStop">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="bus_stop_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToken_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="UserToken" Type="Self.UserToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserToken">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BusHelperEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Beacons" EntityType="Self.Beacon" />
+    <EntitySet Name="Beacon_BusStop" EntityType="Self.Beacon_BusStop" />
+    <EntitySet Name="BusInfoes" EntityType="Self.BusInfo" />
+    <EntitySet Name="BusInfo_BusStop" EntityType="Self.BusInfo_BusStop" />
+    <EntitySet Name="BusInfo_Vehicle" EntityType="Self.BusInfo_Vehicle" />
+    <EntitySet Name="BusStops" EntityType="Self.BusStop" />
+    <EntitySet Name="Histories" EntityType="Self.History" />
+    <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+    <EntitySet Name="UserTokens" EntityType="Self.UserToken" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+    <AssociationSet Name="FK_Beacon_BusStop_Beacon" Association="Self.FK_Beacon_BusStop_Beacon">
+      <End Role="Beacon" EntitySet="Beacons" />
+      <End Role="Beacon_BusStop" EntitySet="Beacon_BusStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Beacon_BusStop_BusStop" Association="Self.FK_Beacon_BusStop_BusStop">
+      <End Role="BusStop" EntitySet="BusStops" />
+      <End Role="Beacon_BusStop" EntitySet="Beacon_BusStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusInfo_BusStop_BusInfo" Association="Self.FK_BusInfo_BusStop_BusInfo">
+      <End Role="BusInfo" EntitySet="BusInfoes" />
+      <End Role="BusInfo_BusStop" EntitySet="BusInfo_BusStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusInfo_Vehicle_BusInfo" Association="Self.FK_BusInfo_Vehicle_BusInfo">
+      <End Role="BusInfo" EntitySet="BusInfoes" />
+      <End Role="BusInfo_Vehicle" EntitySet="BusInfo_Vehicle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusInfo_BusStop_BusStop" Association="Self.FK_BusInfo_BusStop_BusStop">
+      <End Role="BusStop" EntitySet="BusStops" />
+      <End Role="BusInfo_BusStop" EntitySet="BusInfo_BusStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusInfo_Vehicle_Vehicle" Association="Self.FK_BusInfo_Vehicle_Vehicle">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="BusInfo_Vehicle" EntitySet="BusInfo_Vehicle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_BusStop" Association="Self.FK_History_BusStop">
+      <End Role="BusStop" EntitySet="BusStops" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_UserInfo" Association="Self.FK_History_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToken_UserInfo" Association="Self.FK_UserToken_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="UserToken" EntitySet="UserTokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

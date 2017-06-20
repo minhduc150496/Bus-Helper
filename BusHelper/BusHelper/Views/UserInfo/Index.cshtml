@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    List<BusHelperDAL.UserInfo> list = ViewBag.List;
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Data Tables
+        <small>advanced tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title inline">Data Table With Full Features</h3>
+            <a href="@Url.Action("Create", "UserInfo")" class="btn btn-success">Create</a>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="datatable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>E-mail</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in list)
+                    {
+                        <tr>
+                            <td>@item.username</td>
+                            <td>@item.password</td>
+                            <td>@item.email</td>
+                            <td>@item.role</td>
+                            <td>
+                                <form action="@Url.Action("Edit","UserInfo")" method="post" class="inline">
+                                    <input type="hidden" name="id" value="@item.id" />
+                                    <button class="btn btn-default">Edit</button>
+                                </form>
+                                <form action="@Url.Action("Delete","UserInfo")" method="post" class="inline">
+                                    <input type="hidden" name="id" value="@item.id" />
+                                    <button class="btn btn-default">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#datatable").DataTable();
+        })
+    </script>
+}

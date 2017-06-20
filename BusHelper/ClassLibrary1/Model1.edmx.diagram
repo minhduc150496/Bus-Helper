@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83093e00cc144986b9b541253f7670a4" Name="Diagram1">
+        <EntityTypeShape EntityType="BusHelperModel.Beacon" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.Beacon_BusStop" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.BusInfo" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.BusInfo_BusStop" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.BusInfo_Vehicle" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.BusStop" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.History" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.UserInfo" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.UserToken" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusHelperModel.Vehicle" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="BusHelperModel.FK_Beacon_BusStop_Beacon" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_Beacon_BusStop_BusStop" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_BusInfo_BusStop_BusInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_BusInfo_Vehicle_BusInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_BusInfo_BusStop_BusStop" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_BusInfo_Vehicle_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_History_BusStop" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_History_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="BusHelperModel.FK_UserToken_UserInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

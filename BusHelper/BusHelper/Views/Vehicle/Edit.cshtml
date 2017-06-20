@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    BusHelperDAL.Vehicle obj = ViewBag.obj;
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        General Form Elements
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="@Url.Action("Update", "Vehicle")" method="post">
+            <input type="hidden" name="id" value="@obj.id" />
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="number">Number</label>
+                    <input name="number" value="@(obj.number)" id="number" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="driver_name">Driver's name</label>
+                    <input name="driver_name" value="@(obj.driver_name)" type="text" class="form-control" id="driver_name">
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.box -->
+</section>
