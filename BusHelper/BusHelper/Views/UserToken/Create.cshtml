@@ -26,19 +26,19 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="@Url.Action("Add", "Beacon")" method="post">
+        <form role="form" action="@Url.Action("Add", "UserToken")" method="post">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="uuid">UUID</label>
-                    <input name="uuid" id="uuid" type="text" class="form-control" placeholder="Enter UUID">
+                    <label for="token">Token</label>
+                    <input name="token" id="token" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="major">Major</label>
-                    <input name="major" type="number" class="form-control" id="major" placeholder="Enter major">
+                    <label for="user_id">User ID</label>
+                    <input name="user_id" id="user_id" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="minor">Minor</label>
-                    <input name="Minor" type="number" class="form-control" id="minor" placeholder="Enter minor">
+                    <label for="created_at">Created at</label>
+                    <input name="created_at" id="created_at" type="datetime" class="form-control">
                 </div>
             </div>
             <!-- /.box-body -->

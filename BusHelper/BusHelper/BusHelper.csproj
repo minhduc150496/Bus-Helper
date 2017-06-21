@@ -195,6 +195,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BusInfo_BusStopController.cs" />
+    <Compile Include="Controllers\Beacon_BusStopController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\BusInfo_VehicleController.cs" />
     <Compile Include="Controllers\BusStopController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\UserTokenController.cs" />
@@ -1182,6 +1186,9 @@
     <Content Include="Views\UserToken\Create.cshtml" />
     <Content Include="Views\UserToken\Edit.cshtml" />
     <Content Include="Views\UserToken\Index.cshtml" />
+    <Content Include="Views\BusStop\Create.cshtml" />
+    <Content Include="Views\BusStop\Edit.cshtml" />
+    <Content Include="Views\BusStop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

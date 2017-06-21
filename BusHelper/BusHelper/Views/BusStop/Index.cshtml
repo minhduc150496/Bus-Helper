@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    List<BusHelperDAL.UserToken> list = ViewBag.List;
+    List<BusHelperDAL.BusStop> list = ViewBag.List;
 }
 
 <!-- Content Header (Page header) -->
@@ -22,16 +22,16 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title inline">Data Table With Full Features</h3>
-            <a href="@Url.Action("Create", "UserToken")" class="btn btn-success">Create</a>
+            <a href="/BusStop/Create" class="btn btn-success">Create</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <table id="datatable" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Token</th>
-                        <th>User ID</th>
-                        <th>Created at</th>
+                        <th>Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -39,17 +39,17 @@
                     @foreach (var item in list)
                     {
                         <tr>
-                            <td>@item.token</td>
+                            <td>@item.name</td>
                             <td>
-                                @item.user_id
+                                @item.latitude
                             </td>
-                            <td>@item.created_at</td>
+                            <td>@item.longitude</td>
                             <td>
-                                <form action="@Url.Action("Edit","UserToken")" method="post" class="inline">
+                                <form action="@Url.Action("Edit","BusStop")" method="post" class="inline">
                                     <input type="hidden" name="id" value="@item.id" />
                                     <button class="btn btn-default">Edit</button>
                                 </form>
-                                <form action="@Url.Action("Delete","UserToken")" method="post" class="inline">
+                                <form action="@Url.Action("Delete","BusStop")" method="post" class="inline">
                                     <input type="hidden" name="id" value="@item.id" />
                                     <button class="btn btn-default">Delete</button>
                                 </form>

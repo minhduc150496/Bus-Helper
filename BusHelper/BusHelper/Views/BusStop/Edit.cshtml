@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    BusHelperDAL.UserToken obj = ViewBag.obj;
+    BusHelperDAL.BusStop obj = ViewBag.obj;
 }
 
 <!-- Content Header (Page header) -->
@@ -26,20 +26,20 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="@Url.Action("Update", "UserToken")" method="post">
-            <input type="hidden" name="id" value="@obj.id" />
+        <form role="form" action="@Url.Action("Update", "BusStop")" method="post">
+            <input type="hidden" name="id" value="@obj." />
             <div class="box-body">
                 <div class="form-group">
-                    <label for="token">Token</label>
-                    <input name="token" value="@(obj.token)" id="token" type="text" class="form-control">
+                    <label for="name">Name</label>
+                    <input name="name" value="@(obj.name)" id="name" type="text" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="user_id">User ID</label>
-                    <input name="user_id" value="@(obj.user_id)" id="user_id" type="text" class="form-control">
+                    <label for="latitude">Latitude</label>
+                    <input name="latitude" value="@(obj.latitude)" id="latitude" type="text" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="created_at">Created at</label>
-                    <input name="created_at" value="@(obj.created_at)" id="created_at" type="datetime" class="form-control">
+                    <label for="longitude">Longitude</label>
+                    <input name="longitude" value="@(obj.longitude)" id="longitude" type="text" class="form-control" />
                 </div>
             </div>
             <!-- /.box-body -->
