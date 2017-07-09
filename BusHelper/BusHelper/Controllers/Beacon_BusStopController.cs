@@ -12,14 +12,23 @@ namespace BusHelper.Controllers
     {
         public ActionResult Index()
         {
-            IBeacon_BusStopRepository db = new Beacon_BusStopRepository();
-            var list = db.GetAll().ToList<Beacon_BusStop>();
+            IBeacon_BusStopRepository dbMapping = new Beacon_BusStopRepository();
+            var list = dbMapping.GetAll().ToList<Beacon_BusStop>();
+            IBeaconRepository dbBeacon = new BeaconRepository();
+            IBusStopRepository dbBusStop = new BusStopRepository();
+
             ViewBag.List = list;
             return View();
         }
 
         public ActionResult Create()
         {
+            IBeaconRepository dbBeacon = new BeaconRepository();
+            var beacons = dbBeacon.GetAll().ToList<Beacon>();
+            ViewBag.Beacons = beacons;
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
             return View();
         }
 
@@ -42,6 +51,12 @@ namespace BusHelper.Controllers
             IBeacon_BusStopRepository db = new Beacon_BusStopRepository();
             Beacon_BusStop obj = db.GetSingle(id);
             ViewBag.Obj = obj;
+            IBeaconRepository dbBeacon = new BeaconRepository();
+            var beacons = dbBeacon.GetAll().ToList<Beacon>();
+            ViewBag.Beacons = beacons;
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
             return View();
         }
 
@@ -49,9 +64,14 @@ namespace BusHelper.Controllers
         public ActionResult Update(int id, Beacon_BusStop newObject)
         {
             IBeacon_BusStopRepository db = new Beacon_BusStopRepository();
+            IBeaconRepository dbBeacon = new BeaconRepository();
+            IBusStopRepository dbBusStop = new BusStopRepository();
             Beacon_BusStop currentObj = db.GetSingle(id);
             db.Edit(currentObj);
-            // remember to copy fields from newObject to current Obj
+            currentObj.Beacon = dbBeacon.FindBy(x => x.id == newObject.beacon_id).FirstOrDefault();
+            currentObj.beacon_id = newObject.beacon_id;
+            currentObj.BusStop = dbBusStop.FindBy(x => x.id == newObject.bus_stop_id).FirstOrDefault();
+            currentObj.bus_stop_id = newObject.bus_stop_id;
             db.Save();
             return RedirectToAction("Index");
         }

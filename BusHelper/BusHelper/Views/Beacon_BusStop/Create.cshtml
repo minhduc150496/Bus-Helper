@@ -1,0 +1,59 @@
+﻿@using BusHelperDAL
+@{
+    ViewBag.Title = "Create";
+    List<Beacon> beacons = ViewBag.Beacons;
+    List<BusStop> busStops = ViewBag.BusStops;
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        General Form Elements
+        <small>Preview</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="@Url.Action("Add", "Beacon_BusStop")" method="post">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="beacon_id">Beacon</label>
+                    <select name="beacon_id" id="beacon_id" class="form-control">
+                        @foreach (var item in beacons)
+                        {
+                            <option value="@item.id">@item.id - @item.uuid</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bus_stop_id">Bus stop</label>
+                    <select name="bus_stop_id" id="bus_stop_id" class="form-control">
+                        @foreach (var item in busStops)
+                        {
+                            <option value="@item.id">@item.id - @item.name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.box -->
+</section>

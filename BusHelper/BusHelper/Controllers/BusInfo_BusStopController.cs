@@ -51,6 +51,10 @@ namespace BusHelper.Controllers
             IBusInfo_BusStopRepository db = new BusInfo_BusStopRepository();
             BusInfo_BusStop currentObj = db.GetSingle(id);
             db.Edit(currentObj);
+            currentObj.BusInfo = newObject.BusInfo;
+            currentObj.BusStop = newObject.BusStop;
+            currentObj.bus_info_id = newObject.bus_info_id;
+            currentObj.bus_stop_id = newObject.bus_stop_id;
             db.Save();
             return RedirectToAction("Index");
         }

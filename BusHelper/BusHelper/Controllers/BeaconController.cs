@@ -51,6 +51,7 @@ namespace BusHelper.Controllers
             IBeaconRepository db = new BeaconRepository();
             Beacon currentObj = db.GetSingle(id);
             db.Edit(currentObj);
+            currentObj.Beacon_BusStop = newObject.Beacon_BusStop;
             currentObj.major = newObject.major;
             currentObj.minor = newObject.minor;
             currentObj.uuid = newObject.uuid;

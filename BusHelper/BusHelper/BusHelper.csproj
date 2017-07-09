@@ -1189,6 +1189,18 @@
     <Content Include="Views\BusStop\Create.cshtml" />
     <Content Include="Views\BusStop\Edit.cshtml" />
     <Content Include="Views\BusStop\Index.cshtml" />
+    <Content Include="Views\BusInfo_Vehicle\Create.cshtml" />
+    <Content Include="Views\BusInfo_Vehicle\Edit.cshtml" />
+    <Content Include="Views\BusInfo_Vehicle\Index.cshtml" />
+    <Content Include="Views\BusInfo_BusStop\Create.cshtml" />
+    <Content Include="Views\BusInfo_BusStop\Edit.cshtml" />
+    <Content Include="Views\BusInfo_BusStop\Index.cshtml" />
+    <Content Include="Views\Beacon_BusStop\Create.cshtml" />
+    <Content Include="Views\Beacon_BusStop\Edit.cshtml" />
+    <Content Include="Views\Beacon_BusStop\Index.cshtml" />
+    <Content Include="Views\History\Create.cshtml" />
+    <Content Include="Views\History\Edit.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

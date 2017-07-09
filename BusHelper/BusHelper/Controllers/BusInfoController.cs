@@ -51,6 +51,8 @@ namespace BusHelper.Controllers
             IBusInfoRepository db = new BusInfoRepository();
             BusInfo currentObj = db.GetSingle(id);
             db.Edit(currentObj);
+            currentObj.BusInfo_BusStop = newObject.BusInfo_BusStop;
+            currentObj.BusInfo_Vehicle = newObject.BusInfo_Vehicle;
             currentObj.number = newObject.number;
             currentObj.start_time = newObject.start_time;
             currentObj.end_time = newObject.end_time;
