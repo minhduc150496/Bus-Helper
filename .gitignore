@@ -1,3 +1,6 @@
 obj
 bin
 BusHelper/.vs/config/applicationhost.config
+/BusHelper/.vs
+BusHelper
+config
