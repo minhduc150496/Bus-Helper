@@ -10,6 +10,10 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <UseIISExpress>true</UseIISExpress>
+<<<<<<< HEAD
+=======
+    <WebStackScaffolding_DbContextTypeFullName>BusHelperDAL.BusHelperEntities</WebStackScaffolding_DbContextTypeFullName>
+>>>>>>> a6b74f436bfe799d349821c7d8c27fb5e5221f7a
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
