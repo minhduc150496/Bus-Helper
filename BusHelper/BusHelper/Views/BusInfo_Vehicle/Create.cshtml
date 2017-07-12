@@ -1,43 +1,41 @@
-﻿
+﻿@using BusHelperDAL
 @{
     ViewBag.Title = "Create";
+    List<BusInfo> busInfos = ViewBag.BusInfos;
+    List<Vehicle> vehicles = ViewBag.Vehicles;
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        General Form Elements
-        <small>Preview</small>
+        Mapping Bus & Vehicle
     </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
-    </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <!-- general form elements -->
     <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Quick Example</h3>
-        </div>
-        <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="@Url.Action("Add", "Beacon")" method="post">
+        <form role="form" action="@Url.Action("Add", "BusInfo_Vehicle")" method="post">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="uuid">UUID</label>
-                    <input name="uuid" id="uuid" type="text" class="form-control" placeholder="Enter UUID">
+                    <label for="bus_info_id">Bus Info</label>
+                    <select name="bus_info_id" id="bus_info_id" class="form-control">
+                        @foreach (var item in busInfos)
+                        {
+                            <option value="@item.id">@item.number</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="major">Major</label>
-                    <input name="major" type="number" class="form-control" id="major" placeholder="Enter major">
-                </div>
-                <div class="form-group">
-                    <label for="minor">Minor</label>
-                    <input name="Minor" type="number" class="form-control" id="minor" placeholder="Enter minor">
+                    <label for="vehicle_id">Vehicle</label>
+                    <select name="vehicle_id" id="vehicle_id" class="form-control">
+                        @foreach (var item in vehicles)
+                        {
+                            <option value="@item.id">@item.number - @item.driver_name</option>
+                        }
+                    </select>
                 </div>
             </div>
             <!-- /.box-body -->

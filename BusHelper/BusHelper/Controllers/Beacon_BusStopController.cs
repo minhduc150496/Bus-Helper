@@ -14,8 +14,6 @@ namespace BusHelper.Controllers
         {
             IBeacon_BusStopRepository dbMapping = new Beacon_BusStopRepository();
             var list = dbMapping.GetAll().ToList<Beacon_BusStop>();
-            IBeaconRepository dbBeacon = new BeaconRepository();
-            IBusStopRepository dbBusStop = new BusStopRepository();
 
             ViewBag.List = list;
             return View();
@@ -64,13 +62,9 @@ namespace BusHelper.Controllers
         public ActionResult Update(int id, Beacon_BusStop newObject)
         {
             IBeacon_BusStopRepository db = new Beacon_BusStopRepository();
-            IBeaconRepository dbBeacon = new BeaconRepository();
-            IBusStopRepository dbBusStop = new BusStopRepository();
             Beacon_BusStop currentObj = db.GetSingle(id);
             db.Edit(currentObj);
-            currentObj.Beacon = dbBeacon.FindBy(x => x.id == newObject.beacon_id).FirstOrDefault();
             currentObj.beacon_id = newObject.beacon_id;
-            currentObj.BusStop = dbBusStop.FindBy(x => x.id == newObject.bus_stop_id).FirstOrDefault();
             currentObj.bus_stop_id = newObject.bus_stop_id;
             db.Save();
             return RedirectToAction("Index");

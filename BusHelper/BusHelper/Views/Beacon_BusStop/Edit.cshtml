@@ -35,7 +35,7 @@
                     <select name="bus_stop_id" id="bus_stop_id" class="form-control">
                         @foreach (var item in busStops)
                         {
-                            <option @((item.id == obj.bus_stop_id) ? "selected":"") ="@item.id">@item.id - @item.name</option>
+                            <option @((item.id == obj.bus_stop_id) ? "selected":"") value="@item.id">@item.id - @item.name</option>
                         }
                     </select>
                 </div>
