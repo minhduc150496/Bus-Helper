@@ -20,6 +20,12 @@ namespace BusHelper.Controllers
 
         public ActionResult Create()
         {
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
+            IUserInfoRepository dbUserInfo = new UserInfoRepository();
+            var userInfos = dbUserInfo.GetAll().ToList<UserInfo>();
+            ViewBag.UserInfos = userInfos;
             return View();
         }
 
@@ -28,6 +34,7 @@ namespace BusHelper.Controllers
         {
             IHistoryRepository db = new HistoryRepository();
             try {
+                model.created_at = DateTime.Now;
                 db.Add(model);
                 db.Save();
             } catch (Exception)
@@ -42,6 +49,12 @@ namespace BusHelper.Controllers
             IHistoryRepository db = new HistoryRepository();
             History obj = db.GetSingle(id);
             ViewBag.Obj = obj;
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
+            IUserInfoRepository dbUserInfo = new UserInfoRepository();
+            var userInfos = dbUserInfo.GetAll().ToList<UserInfo>();
+            ViewBag.UserInfos = userInfos;
             return View();
         }
 
@@ -51,7 +64,8 @@ namespace BusHelper.Controllers
             IHistoryRepository db = new HistoryRepository();
             History currentObj = db.GetSingle(id);
             db.Edit(currentObj);
-
+            currentObj.bus_stop_id = newObject.bus_stop_id;
+            currentObj.user_id = newObject.user_id;
             db.Save();
             return RedirectToAction("Index");
         }

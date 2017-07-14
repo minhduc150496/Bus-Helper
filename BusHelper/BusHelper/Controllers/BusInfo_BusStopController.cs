@@ -21,6 +21,12 @@ namespace BusHelper.Controllers
 
         public ActionResult Create()
         {
+            IBusInfoRepository dbBusInfo = new BusInfoRepository();
+            var busInfos = dbBusInfo.GetAll().ToList<BusInfo>();
+            ViewBag.BusInfos = busInfos;
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
             return View();
         }
 
@@ -43,6 +49,12 @@ namespace BusHelper.Controllers
             IBusInfo_BusStopRepository db = new BusInfo_BusStopRepository();
             BusInfo_BusStop obj = db.GetSingle(id);
             ViewBag.Obj = obj;
+            IBusInfoRepository dbBusInfo = new BusInfoRepository();
+            var busInfos = dbBusInfo.GetAll().ToList<BusInfo>();
+            ViewBag.BusInfos = busInfos;
+            IBusStopRepository dbBusStop = new BusStopRepository();
+            var busStops = dbBusStop.GetAll().ToList<BusStop>();
+            ViewBag.BusStops = busStops;
             return View();
         }
 
@@ -52,8 +64,6 @@ namespace BusHelper.Controllers
             IBusInfo_BusStopRepository db = new BusInfo_BusStopRepository();
             BusInfo_BusStop currentObj = db.GetSingle(id);
             db.Edit(currentObj);
-            currentObj.BusInfo = newObject.BusInfo;
-            currentObj.BusStop = newObject.BusStop;
             currentObj.bus_info_id = newObject.bus_info_id;
             currentObj.bus_stop_id = newObject.bus_stop_id;
             db.Save();
