@@ -214,6 +214,7 @@
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\BusInfo_VehicleController.cs" />
     <Compile Include="Controllers\BusStopController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\UserTokenController.cs" />
     <Compile Include="Controllers\BusInfoController.cs" />
@@ -1215,6 +1216,7 @@
     <Content Include="Views\History\Create.cshtml" />
     <Content Include="Views\History\Edit.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
