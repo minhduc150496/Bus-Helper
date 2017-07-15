@@ -1,13 +1,15 @@
-﻿
+﻿@using BusHelperDAL
 @{
     ViewBag.Title = "Index";
-    BusHelperDAL.Beacon_BusStop obj = ViewBag.obj;
+    BusInfo_BusStop obj = ViewBag.obj;
+    List<BusInfo> busInfos = ViewBag.BusInfos;
+    List<BusStop> busStops = ViewBag.BusStops;
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Mapping Beacon & Bus Stop
+        Mapping BusInfo & Bus Stop
     </h1>
 </section>
 
@@ -15,25 +17,27 @@
 <section class="content">
     <!-- general form elements -->
     <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Quick Example</h3>
-        </div>
-        <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="@Url.Action("Update", "Beacon_BusStop")" method="post">
+        <form role="form" action="@Url.Action("Update", "BusInfo_BusStop")" method="post">
             <input type="hidden" name="id" value="@obj.id" />
             <div class="box-body">
                 <div class="form-group">
-                    <label for="uuid">UUID</label>
-                    <input name="uuid" value="@(obj.uuid)" id="uuid" type="text" class="form-control" placeholder="Enter UUID">
+                    <label for="bus_info_id">Bus Info</label>
+                    <select name="bus_info_id" id="bus_info_id" class="form-control">
+                        @foreach (var item in busInfos)
+                        {
+                            <option @((item.id == obj.bus_info_id) ? "selected" : "") value="@item.id">@item.number</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="major">Major</label>
-                    <input name="major" value="@(obj.major)" type="number" class="form-control" id="major" placeholder="Enter major">
-                </div>
-                <div class="form-group">
-                    <label for="minor">Minor</label>
-                    <input name="Minor" value="@(obj.minor)" type="number" class="form-control" id="minor" placeholder="Enter minor">
+                    <label for="bus_stop_id">BusStop</label>
+                    <select name="bus_stop_id" id="bus_stop_id" class="form-control">
+                        @foreach (var item in busStops)
+                        {
+                            <option @((item.id == obj.bus_stop_id) ? "selected" : "") value="@item.id">@item.name</option>
+                        }
+                    </select>
                 </div>
             </div>
             <!-- /.box-body -->

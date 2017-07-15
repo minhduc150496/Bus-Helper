@@ -1,11 +1,107 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    List<BusHelperDAL.Beacon> beacons = ViewBag.Beacons;
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Welcome to Bus Helper
+        Dashboards
     </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                    <h3>@(ViewBag.nBeacons)</h3>
+
+                    <p>Beacons</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-wifi"></i>
+                </div>
+                <a href="/Beacon" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@(ViewBag.nVehicles)</h3>
+
+                    <p>Vehicles</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-bus"></i>
+                </div>
+                <a href="/Vehicle" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>@(ViewBag.nBusInfos)</h3>
+
+                    <p>Bus Infos</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-map-signs"></i>
+                </div>
+                <a href="/BusInfo" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@(ViewBag.nBusStops)</h3>
+
+                    <p>Bus Stops</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-bank"></i>
+                </div>
+                <a href="/BusStop" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-purple">
+                <div class="inner">
+                    <h3>@(ViewBag.nUsers)</h3>
+
+                    <p>Users</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <a href="/UserInfo" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-maroon">
+                <div class="inner">
+                    <h3>@(ViewBag.nUserTokens)</h3>
+
+                    <p>User Tokens</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-key"></i>
+                </div>
+                <a href="/UserToken" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
 </section>
