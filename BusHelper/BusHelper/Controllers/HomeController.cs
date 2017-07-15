@@ -10,6 +10,7 @@ namespace BusHelper.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             IBeaconRepository dbBeacon = new BeaconRepository();
