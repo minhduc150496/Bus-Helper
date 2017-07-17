@@ -358,6 +358,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusInfo_BusStopController.cs" />
     <Compile Include="Controllers\Beacon_BusStopController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
